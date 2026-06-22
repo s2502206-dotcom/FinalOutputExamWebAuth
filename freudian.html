@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Caesar</title>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url("images/background.jpg.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    header{
+        width: 100%;
+        height: 42px;
+        background: #f3f3f3;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 60px;
+    }
+
+    .header-color{
+        font-family: Georgia, serif;
+        font-size: 18px;
+        font-weight: normal;
+        color: #222;
+    }
+
+    .header-backbutton-image{
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 999;
+    }
+
+    .header-backbutton-image img{
+        width: 42px;
+        cursor: pointer;
+    }
+
+    .header-backbutton-image img:hover{
+        opacity: 0.5;
+    }
+
+    /* ======================
+       MAIN CONTAINER
+    ====================== */
+
+    .container{
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 42px);
+    }
+
+    .left-image{
+        position: absolute;
+        top: 55px;
+        left: 83.5px;
+    }
+
+    .left-image img{
+        width: 630px;
+        height: 622px;
+        display: block;
+    }
+
+    .right-image{
+        position: absolute;
+        top: 68px;
+        right: 80px;
+        width:705px;
+        height: 710px;
+        background: #111;
+        padding: 12px;
+    }
+
+    .right-image h2{
+        color: white;
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .song-list p{
+        color: white;
+        font-size: 15px;
+        margin-top: 12px;
+    }
+
+    .song-list span{
+        display: block;
+        color: #bdbdbd;
+        font-size: 12px;
+        margin-top: 3px;
+    }
+
+    .track-table{
+        width: 100%;
+        border-collapse: collapse;
+        color: white;
+        font-size: 12px;
+    }
+
+    .track-table th{
+        background: #222;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .track-table td{
+        padding: 6px;
+    }
+
+    .track-table th,
+    .track-table td{
+        border: 1px solid #444;
+    }
+
+    @media (max-width: 1000px){
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            padding: 30px 20px;
+        }
+
+        .left-image,
+        .backbutton-box,
+        .right-image{
+            position: static;
+        }
+
+        .left-image img{
+            width: 320px;
+        }
+
+        .right-image{
+            width: 320px;
+            margin-top: 25px;
+        }
+
+        .backbutton-box{
+            margin-bottom: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const audios = document.querySelectorAll("audio");
+
+    audios.forEach(audio => {
+        audio.addEventListener("play", () => {
+
+            audios.forEach(otherAudio => {
+                if (otherAudio !== audio) {
+                    otherAudio.pause();
+                    otherAudio.currentTime = 0;
+                }
+            });
+
+        });
+    });
+});
+</script>
+
+<header>
+    <div class="header-color">Daniel Caesar</div>
+    <div class="header-backbutton-image">
+        <a href="album.html">
+            <img src="images/backbutton.webp" alt="Back Button">
+        </a>
+    </div>
+
+    </header>
+
+<div class="left-image">
+    <img src="images/album1playlist.png" alt="Freudian Album">
+</div>
+
+<div class="right-image">
+
+    <h2>Track List</h2>
+
+    <div class="song-list">
+
+        <table class="track-table" border="1">
+
+            <tr>
+                <th>No.</th>
+                <th>Song</th>
+                <th>Artist</th>
+                <th>Audio</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>Get You (feat. Kali Uchis)</td>
+                <td>Daniel Caesar, Kali Uchis</td>
+                <td>
+                    <audio controls>
+                        <source src="audios/Get You.mp3." type="audio/mpeg">
+                    </audio>
+                </td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Best Part (feat. H.E.R.)</td>
+                <td>Daniel Caesar, H.E.R.</td>
+                <td>
+                    <audio controls>
+                        <source src="audios/Best Part.mp3" type="audio/mpeg">
+                    </audio>
+                </td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>Hold Me Down</td>
+                <td>Daniel Caesar</td>
+                <td>
+                    <audio controls>
+                        <source src="audios/Hold Me Down.mp3" type="audio/mpeg">
+                    </audio>
+                </td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+                <td>Neu Roses (Transgressor's Song)</td>
+                <td>Daniel Caesar</td>
+                <td>
+                    <audio controls>
+                        <source src="audios/Neu Roses.mp3" type="audio/mpeg">
+                    </audio>
+                </td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td>Loose</td>
+                <td>Daniel Caesar</td>
+                <td>
+                    <audio controls>
+                        <source src="audios/Loose.mp3" type="audio/mpeg">
+                    </audio>
+                </td>
+            </tr>
+
+            <tr>
+                <td>6</td>
+                <td>We Find Love</td>
+                <td>Daniel Caesar</td>
+                <td>
+                    <audio controls>
+                        <source src="audios/We Find Love.mp3" type="audio/mpeg">
+                    </audio>
+                </td>
+            </tr>
+
+            <tr>
+                <td>7</td>
+                <td>Blessed</td>
+                <td>Daniel Caesar</td>
+                <td>
+                    <audio controls>
+                        <source src="audios/Blessed.mp3" type="audio/mpeg">
+                    </audio>
+                </td>
+            </tr>
+
+            <tr>
+                <td>8</td>
+                <td>Take Me Away (feat. Syd)</td>
+                <td>Daniel Caesar, Syd</td>
+                <td>
+                    <audio controls>
+                        <source src="audios/Take Me Away.mp3" type="audio/mpeg">
+                    </audio>
+                </td>
+            </tr>
+
+            <tr>
+                <td>9</td>
+                <td>Transform (feat. Charlotte Day Wilson)</td>
+                <td>Daniel Caesar, Charlotte Day Wilson</td>
+                <td>
+                    <audio controls>
+                        <source src="audios/Transform.mp3" type="audio/mpeg">
+                    </audio>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>

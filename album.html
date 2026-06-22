@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Caesar Albums</title>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url("images/background.jpg.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    header{
+        width: 100%;
+        height: 42px;
+        background: #f3f3f3;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 60px;
+    }
+
+    .header-color{
+        font-family: Georgia, serif;
+        font-size: 18px;
+        font-weight: normal;
+        color: #222;
+    }
+
+    nav ul{
+        display: flex;
+        list-style: none;
+        gap: 25px;
+    }
+
+    nav ul li a{
+        text-decoration: none;
+        color: navy;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    nav ul li a:hover{
+        color: navy;
+        text-decoration: underline;
+    }
+
+    nav ul li:active{
+        text-decoration: underline;
+        text-decoration-color: navy;
+    }
+
+
+    .container{
+        width: 100%;
+        padding: 25px 70px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 60px;
+    }
+
+        .MainImage-section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .MainImage-section img{
+            width: 500px;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 28px;
+        }
+
+        .about-btn{
+            margin-top: 12px;
+            text-decoration: none;
+            color: white;
+            background: #5865f2;
+            padding: 10px 35px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .albums-title{
+            text-align: center;
+        }
+
+        .albums-title h1{
+            color: white;
+            font-size: 60px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .album-grid{
+            display: grid;
+            grid-template-columns: repeat(2, 200px);
+            gap: 50px 40px;
+            justify-content: center;
+        }
+
+        .album{
+            text-align: center;
+        }
+
+        .album img{
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 28px;
+        }
+        .album img:hover{
+            opacity: 0.5;
+        }
+
+        .album p{
+            color: white;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+        
+        .album p:hover{
+            color: white;
+            text-decoration: underline;
+        }
+        .album p:active{
+            text-decoration: underline;
+            text-decoration-color: white;
+        }
+        .album a{
+            color: white;
+            text-decoration: none;
+        }
+        .album a:hover{
+            color: white;
+            text-decoration: underline;
+        }
+        .album a:active{
+            text-decoration: underline;
+            text-decoration-color: white;
+        }
+        .about-btn:hover{
+            color: white;
+            text-decoration: underline;
+        }
+        .about-btn:active{
+            text-decoration: white;
+            text-decoration-color: white;
+        }
+
+        @media (max-width: 1000px){
+
+            .container{
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .albums-title h1{
+                font-size: 45px;
+            }
+
+            .album-grid{
+                grid-template-columns: repeat(2, 200px);
+            }
+
+            .album img{
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-color">Daniel Caesar</div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="album.html">Album</a></li>
+            <li><a href="contacts.html">Contacts</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+
+    <div class="MainImage-section">
+        <img src="images/danielcaesarAlbum.png" alt="Daniel Caesar">
+
+        <a href="about.html" class="about-btn">About</a>
+    </div>
+
+    <div class="albums-title">
+        <h1>ALBUMS</h1>
+
+        <div class="album-grid">
+
+            <div class="album">
+                <img src="images/freudiancover.jpg" alt="Freudian">
+                <a href="freudian.html">Freudian</a>
+            </div>
+            
+            <div class="album">
+                <img src="images/casestudy01cover.png" alt="Case Study 01">
+                <p>Case Study 01</p>
+            </div>
+
+            <div class="album">
+                <img src="images/neverenoughcover.jpg" alt="Never Enough">
+                <p>Never Enough</p>
+            </div>
+
+            <div class="album">
+                <img src="images/sonofspergycover.jpg" alt="Son of Spergy">
+                <p>Son of Spergy</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
