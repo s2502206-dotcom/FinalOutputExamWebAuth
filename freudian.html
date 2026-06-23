@@ -1,316 +1,808 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel Caesar</title>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Caesar</title>
 
-<style>
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body{
-        font-family: Arial, Helvetica, sans-serif;
-        background-image: url("images/background.jpg.webp");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-
-    header{
-        width: 100%;
-        height: 42px;
-        background: #f3f3f3;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 60px;
-    }
-
-    .header-color{
-        font-family: Georgia, serif;
-        font-size: 18px;
-        font-weight: normal;
-        color: #222;
-    }
-
-    .header-backbutton-image{
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 999;
-    }
-
-    .header-backbutton-image img{
-        width: 42px;
-        cursor: pointer;
-    }
-
-    .header-backbutton-image img:hover{
-        opacity: 0.5;
-    }
-
-    /* ======================
-       MAIN CONTAINER
-    ====================== */
-
-    .container{
-        position: relative;
-        width: 100%;
-        height: calc(100vh - 42px);
-    }
-
-    .left-image{
-        position: absolute;
-        top: 55px;
-        left: 83.5px;
-    }
-
-    .left-image img{
-        width: 630px;
-        height: 622px;
-        display: block;
-    }
-
-    .right-image{
-        position: absolute;
-        top: 68px;
-        right: 80px;
-        width:705px;
-        height: 710px;
-        background: #111;
-        padding: 12px;
-    }
-
-    .right-image h2{
-        color: white;
-        font-size: 18px;
-        margin-bottom: 12px;
-    }
-
-    .song-list p{
-        color: white;
-        font-size: 15px;
-        margin-top: 12px;
-    }
-
-    .song-list span{
-        display: block;
-        color: #bdbdbd;
-        font-size: 12px;
-        margin-top: 3px;
-    }
-
-    .track-table{
-        width: 100%;
-        border-collapse: collapse;
-        color: white;
-        font-size: 12px;
-    }
-
-    .track-table th{
-        background: #222;
-        padding: 8px;
-        text-align: left;
-    }
-
-    .track-table td{
-        padding: 6px;
-    }
-
-    .track-table th,
-    .track-table td{
-        border: 1px solid #444;
-    }
-
-    @media (max-width: 1000px){
-
-        .container{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: auto;
-            padding: 30px 20px;
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        .left-image,
-        .backbutton-box,
-        .right-image{
-            position: static;
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url("images/background.jpg.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        header{
+            width: 100%;
+            height: 42px;
+            background: #f3f3f3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .header-color{
+            font-family: Georgia, serif;
+            font-size: 18px;
+            font-weight: normal;
+            color: #222;
+        }
+
+        .header-backbutton-image{
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 999;
+        }
+
+        .header-backbutton-image img{
+            width: 42px;
+            cursor: pointer;
+        }
+
+        .header-backbutton-image img:hover{
+            opacity: 0.5;
+        }
+
+        /* ======================
+        MAIN CONTAINER
+        ====================== */
+
+        .container{
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 42px);
+        }
+
+        .left-image{
+            position: absolute;
+            top: 68px;
+            left: 25px;
         }
 
         .left-image img{
-            width: 320px;
+            width: 630px;
+            height: 622px;
+            display: block;
         }
 
         .right-image{
-            width: 320px;
-            margin-top: 25px;
+            position: absolute;
+            top: 68px;
+            right: 30px;
+            width: 820px;
+            height: 700px;
+            background: #111;
+            padding: 12px;
+            overflow-y: auto;
+            overflow-x: auto;
         }
 
-        .backbutton-box{
-            margin-bottom: 20px;
+        .right-image h2{
+            color: white;
+            font-size: 18px;
+            margin-bottom: 12px;
         }
-    }
-</style>
-</head>
 
-<body>
+        .song-list p{
+            color: white;
+            font-size: 15px;
+            margin-top: 12px;
+        }
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-        const audios = document.querySelectorAll("audio");
+        .song-list span{
+            display: block;
+            color: #bdbdbd;
+            font-size: 12px;
+            margin-top: 3px;
+        }
 
-    audios.forEach(audio => {
-        audio.addEventListener("play", () => {
+        .track-table{
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+            font-size: 12px;
+            table-layout: fixed;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-            audios.forEach(otherAudio => {
-                if (otherAudio !== audio) {
-                    otherAudio.pause();
-                    otherAudio.currentTime = 0;
-                }
+        .track-table th{
+            background: #222;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .track-table td{
+            vertical-align: top;
+            color: white;
+        }
+
+        .track-table th,
+        .track-table td{
+            border: 1px solid #444;
+        }
+
+        .track-table textarea{
+    width: 100%;
+    max-width: 250px;
+    height: 120px;
+    resize: none;
+    overflow-y: scroll;
+    overflow-x: hidden; 
+    padding: 6px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.track-table audio {
+    width: 180px;
+    max-width: 100%;
+    display: block;
+}
+
+.lyrics{
+    color:white;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.lyrics-scroll {
+    height: 120px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 6px;
+}
+        @media (max-width: 1000px){
+
+            .container{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+                padding: 30px 20px;
+            }
+
+            .left-image,
+            .backbutton-box,
+            .right-image{
+                position: static;
+            }
+
+            .left-image img{
+                width: 320px;
+            }
+
+            .right-image{
+                width: 320px;
+                margin-top: 25px;
+            }
+
+            .backbutton-box{
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    </head>
+
+    <body>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+            const audios = document.querySelectorAll("audio");
+
+        audios.forEach(audio => {
+            audio.addEventListener("play", () => {
+
+                audios.forEach(otherAudio => {
+                    if (otherAudio !== audio) {
+                        otherAudio.pause();
+                        otherAudio.currentTime = 0;
+                    }
+                });
+
             });
-
         });
     });
-});
-</script>
+    </script>
 
-<header>
-    <div class="header-color">Daniel Caesar</div>
-    <div class="header-backbutton-image">
-        <a href="album.html">
-            <img src="images/backbutton.webp" alt="Back Button">
-        </a>
+    <header>
+        <div class="header-color">Daniel Caesar</div>
+        <div class="header-backbutton-image">
+            <a href="album.html">
+                <img src="images/backbutton.webp" alt="Back Button">
+            </a>
+        </div>
+
+        </header>
+
+    <div class="left-image">
+        <img src="images/album1playlist.png" alt="Freudian Album">
     </div>
 
-    </header>
+    <div class="right-image">
 
-<div class="left-image">
-    <img src="images/album1playlist.png" alt="Freudian Album">
-</div>
+        <h2>Track List</h2>
 
-<div class="right-image">
+        <div class="song-list">
 
-    <h2>Track List</h2>
+            <table class="track-table" border="1">
+    <tr>
+        <th>No.</th>
+        <th>Song</th>
+        <th>Artist</th>
+        <th>Audio</th>
+        <th>Lyrics</th>
+    </tr>
 
-    <div class="song-list">
+    <tr>
+        <td>1</td>
+        <td>Get You (feat. Kali Uchis)</td>
+        <td>Daniel Caesar, Kali Uchis</td>
+        <td>
+            <audio controls>
+                <source src="audios/Get You.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <div class="lyrics-scroll">
+                <p class="lyrics">Through drought and famine, natural disasters
+My baby has been around for me
+Kingdoms have fallen, angels be calling
+None of that could ever make me leave
+Every time I look into your eyes I see it
+You're all I need
+Every time I get a bit inside I feel it<br>
+<br>
+Oooooooh, who could've thought I'd get you
+Oooooooh, who could've thought I'd get you<br>
+<br>
+And when we're making love
+Your cries they can be heard from far and wide
+It's only the two of us
+Everything I need's between those thighs
+Every time I look into your eyes I see it
+You're all I need
+Every time I get a bit inside I feel it<br>
+<br>
+Oooooooh, who could've thought I'd get you
+Oh yeah
+Oh yeah babe
+Oooooooh, who could've thought I'd get you<br>
+<br>
+And I'll take some time
+Just to be thankful
+That I had days full of you, you
+Before it winds down into
+The memories, it's all just memories<br>
+<br>
+(If you've got someone you like...)
+Don't you love when I come around
+(...feel something that's right somebody just tell somebody)
+Build you up then I take you down
+(If you've got someone you like...)
+Don't you love when I come around
+(...feel something that's right somebody just tell somebody)
+Build you up then I take...<br>
+<br>
+Oooooooh, who could've thought I'd get you
+Oooooooh, who could've thought I'd get you<br>
+<br>
+This feels like summer
+Boy you make me feel so alive
+Just be my lover
+Boy you'll lead me to paradise<br>
+<br>
+                </p>
+            </div>
+        </td>
+    </tr>
 
-        <table class="track-table" border="1">
+    <tr>
+        <td>2</td>
+        <td>Best Part (feat. H.E.R.)</td>
+        <td>Daniel Caesar, H.E.R.</td>
+        <td>
+            <audio controls>
+                <source src="audios/Best Part.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <div class="lyrics-scroll">
+                <p class="lyrics">Oh, ey<br>
+                <br>
+                You don't know babe
+When you hold me
+And kiss me slowly
+It's the sweetest thing
+And it don't change
+If I had it my way
+You would know that you are<br>
+<br>
+You're the coffee that I need in the morning
+You're my sunshine in the rain when it's pouring
+Won't you give yourself to me
+Give it all, oh<br>
+<br>
+I just wanna see
+I just wanna see how beautiful you are
+You know that I see it
+I know you're a star
+Where you go I'll follow
+No matter how far
+If life is a movie
+Oh you're the best part, oh
+You're the best part, oh
+Best part<br>
+<br>
+And those brown eyes, yes
+You're the one that I desire
+When we wake up
+And then we make love
+It makes me feel so nice<br>
+<br>
+You're my water when I'm stuck in the desert
+You're the Tylenol I take when my head hurts
+You're the sunshine on my life<br>
+<br>
+I just wanna see how beautiful you are
+You know that I see it
+I know you're a star
+Where you go I'll follow
+No matter how far
+If life is a movie
+Then you're the best part, oh
+You're the best part, oh
+Best part<br>
+<br>
+If you love me won't you say something
+If you love me won't you
+Won't you
+If you love me won't you say something
+If you love me won't you
+Love me, won't you
+If you love me won't you say something
+If you love me won't you
+If you love me won't you say something
+If you love me won't you
+Love me, won't you
+If you love me won't you say something
+If you love me won't you
+If you love me won't you say something
+If you love me won't you
+Love me, won't you<br>
+            </p>
+            </div>
+        </td>
+    </tr>
 
-            <tr>
-                <th>No.</th>
-                <th>Song</th>
-                <th>Artist</th>
-                <th>Audio</th>
-            </tr>
+    <tr>
+        <td>3</td>
+        <td>Hold Me Down</td>
+        <td>Daniel Caesar</td>
+        <td>
+            <audio controls>
+                <source src="audios/Hold Me Down.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <div class="lyrics-scroll">
+                <p class="lyrics">If you love me baby let me hear you say it
+I know I'm your favorite
+First you love me then you leave me in the basement
+I know I'm your favorite
+If you love me baby let me hear you say it
+I know I'm your favorite
+First you love me then you leave me on the pavement
+I know I'm your favorite<br>
+<br>
+I got this girl she's making me crazy
+I nearly let her have all my babies
+Pussy so good it sets me on fire
+I leave myself I elevate higher
+You're fly girl but you're headed to maybe
+I'll take the time treat you like a lady
+My life's a spectacle, a sad story
+Perhaps I find my way to the glory, yes<br>
+<br>
+I'm the one who took you to higher heights
+That's what I was trying to do
+I know you had your dreams of a better life
+This time we ain't making it through<br>
+<br>
+If you love me baby let me hear you say it
+I know I'm your favorite
+First you love me then you leave me in the basement
+I know I'm your favorite
+If you love me baby let me hear you say it
+I know I'm your favorite
+First you love me then you leave me on the pavement
+I know I'm your favorite<br>
+<br>
+You're getting on a plane
+And travelling far away
+You left me with the pain
+I carry it everyday
+Who do you think you are
+Some kind of celebrity
+Just wait and see<br>
+<br>
+I never asked for much only that you stay true
+Need I remind you all the things I do for you
+Who can not blame, I play the game
+Well just for now
+I was wondering can you hold me down
+I was wondering can you hold me down<br>
+</p>
+            </div>
+        </td>
+    </tr>
 
-            <tr>
-                <td>1</td>
-                <td>Get You (feat. Kali Uchis)</td>
-                <td>Daniel Caesar, Kali Uchis</td>
-                <td>
-                    <audio controls>
-                        <source src="audios/Get You.mp3." type="audio/mpeg">
-                    </audio>
-                </td>
-            </tr>
+    <tr>
+        <td>4</td>
+        <td>Neu Roses (Transgressor's Song)</td>
+        <td>Daniel Caesar</td>
+        <td>
+            <audio controls>
+                <source src="audios/Neu Roses.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <div class="lyrics-scroll">
+                <p class="lyrics">There are times I think about that fateful day
+I threw your love away
+Every time I see that look upon your face
+The same one that you made
+When your fragile world was crashing down around you
+You realized your place
+And the darkness that you try so hard to subdue
+It causes you to change
+But baby, baby, please don't leave me (Please don't leave me)
+I know I made a big mistake, don't turn my sunshine to shade
+Baby, please don't leave me (Please don't leave me)
+I know this is a game we play
+You're always taking my breath away<br>
+<br>
+Should've left you a long time ago
+All my niggas done told me so
+But my niggas don't hold me tight
+When I'm sleeping in my bed at night, only you
+Should've left a long time ago
+All my niggas done told me so
+But my niggas don't hold me tight
+When I'm sleeping in my bed at night, only you
+Babe, I know I fucked up
+Fucked with some empty cups
+But you got your friends too
+But you got your friends too
+Better believe it, in
+Truth I'm up on my luck, can't stop running amok
+But you got your friends too
+But you got your friends too
+Better believe it, I<br>
+</p>
+            </div>
+        </td>
+    </tr>
 
-            <tr>
-                <td>2</td>
-                <td>Best Part (feat. H.E.R.)</td>
-                <td>Daniel Caesar, H.E.R.</td>
-                <td>
-                    <audio controls>
-                        <source src="audios/Best Part.mp3" type="audio/mpeg">
-                    </audio>
-                </td>
-            </tr>
+    <tr>
+        <td>5</td>
+        <td>Loose</td>
+        <td>Daniel Caesar</td>
+        <td>
+            <audio controls>
+                <source src="audios/Loose.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <div class="lyrics-scroll">
+                <p class="lyrics">
+If you ever start to wonder
+Why all the rain and all the thunder follows her around
+You better cut that girl loose
+Most of time everything's fine
+But as soon as she starts to whine
+If you have no patience
+You better cut that girl loose
+What are you, a coward?
+Who are you helping?
+You got the power
+Then do what you said you can
+And do it for her
+You better cut that girl loose, ah
+Set it free
+Let it be
+Leave it be
+Oh yes<br>
+<br>
+You don't love me anymore
+Let's see how you like this song
+See you walking out the door
+Wonder why it took you so long
+Ever since the day that I met you
+Knew you were the girl of my dreams
+But we could never be<br>
+</p>
+            </div>
+        </td>
+    </tr>
 
-            <tr>
-                <td>3</td>
-                <td>Hold Me Down</td>
-                <td>Daniel Caesar</td>
-                <td>
-                    <audio controls>
-                        <source src="audios/Hold Me Down.mp3" type="audio/mpeg">
-                    </audio>
-                </td>
-            </tr>
+    <tr>
+        <td>6</td>
+        <td>We Find Love</td>
+        <td>Daniel Caesar</td>
+        <td>
+            <audio controls>
+                <source src="audios/We Find Love.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <div class="lyrics-scroll">
+                <p class="lyrics">You don't love me anymore
+Let's see how you like this song
+I see you walking out that door
+Wonder why it took you so long<br>
+<br>
+Ever since the day that I met you
+I knew you were the girl of my dreams
+But we could never be<br>
+<br>
+You don't love me anymore
+Let's see how you like this song<br>
+<br>
+We find love, we get up
+And we fall down, we give up
+We find love, we get up
+And we fall down, we give up<br>
+<br>
+You don't love me anymore
+Let's see how you like this song
+You need someone you adore
+Find a place where you might belong<br>
+<br>
+Ever since the day that I met you
+My world's been spinning out of control
+I just need you to hold<br>
+<br>
+We knew we'd come around
+This thing called love comes crashing down now
+Pieces all on the ground
+What once was lost cannot be found out
+We knew we'd come around
+This thing called love comes crashing down now
+Pieces all on the ground
+What once was lost cannot be found out
+We knew we'd come around
+This thing called love comes crashing down now
+Pieces all on the ground
+What once was lost cannot be found out<br>
+<br>
+Heaven help us, heaven help us, yeah
+We're on our own<br>
+<br>
+We find love, we get up
+And we fall down, we give up
+We find love, we get up
+And we fall down, we give up
+We find love, we get up
+And we fall down, we give up<br>
+<br>
+We find love, yeah, we get up
+We fall down, we give up<br>
+</p>
+            </div>
+        </td>
+    </tr>
 
-            <tr>
-                <td>4</td>
-                <td>Neu Roses (Transgressor's Song)</td>
-                <td>Daniel Caesar</td>
-                <td>
-                    <audio controls>
-                        <source src="audios/Neu Roses.mp3" type="audio/mpeg">
-                    </audio>
-                </td>
-            </tr>
+    <tr>
+        <td>7</td>
+        <td>Blessed</td>
+        <td>Daniel Caesar</td>
+        <td>
+            <audio controls>
+                <source src="audios/Blessed.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <div class="lyrics-scroll">
+                <p class="lyrics">Everywhere that I go, everywhere that I be
+If you were not surrounding me with your energy
+I don't wanna be there, don't wanna be anywhere
+Any place that I can't feel you, I just wanna be near you<br>
+<br>
+And yes, I'm a mess but I'm blessed
+To be stuck with you
+Sometimes it gets unhealthy
+We can't be by ourselves we
+We'll always need each other, and
+Yes, I'm a mess but I'm blessed
+To be stuck with you
+I just want you to know that
+If I could I swear I'll go back
+Make everything all better, whoa<br>
+<br>
+It's the things that you say
+It's the way that you pray
+Prey on my insecurities
+I know you're feeling me
+I know sometimes I do wrong
+But hear the words of this song
+When I go I don't stay gone for long
+Don't know what's going on<br>
+<br>
+And yes, I'm a mess but I'm blessed
+To be stuck with you
+Sometimes it gets unhealthy
+We can't be by ourselves we
+We'll always need each other, and
+Yes, I'm a mess but I'm blessed
+To be stuck with you
+I just want you to know that
+If I could I swear I'll go back
+Make everything all better, whoa<br>
+<br>
+And I'm coming back home to you
+And I'm coming back home to you
+I'm coming back home
+I'm coming back home to you
+I'm coming back home
+I'm coming back home to you
+I'm coming back home
+I'm coming back home to you
+I'm coming back home<br>
+<br>
+I'm coming back home to you
+I'm coming back home
+I'm coming back home to you
+I'm coming back home<br>
+<br>
+And yes, I'm a mess but I'm blessed
+To be stuck with you
+Sometimes it gets unhealthy
+We can't be by ourselves we
+We'll always need each other, and
+Yes, I'm a mess but I'm blessed
+To be stuck with you
+I just want you to know that
+If I could I swear I'll go back
+Make everything all better, whoa<br>
+</p>
+            </div>
+        </td>
+    </tr>
 
-            <tr>
-                <td>5</td>
-                <td>Loose</td>
-                <td>Daniel Caesar</td>
-                <td>
-                    <audio controls>
-                        <source src="audios/Loose.mp3" type="audio/mpeg">
-                    </audio>
-                </td>
-            </tr>
+    <tr>
+        <td>8</td>
+        <td>Take Me Away (feat. Syd)</td>
+        <td>Daniel Caesar, Syd</td>
+        <td>
+            <audio controls>
+                <source src="audios/Take Me Away.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <div class="lyrics-scroll">
+                <p class="lyrics">[Daniel Caesar:]
+Now it's time to sit back and enjoy creation
+See what Jah has done
+Every time she tops me off, it's celebration, yeah
+What has life become?
+And we don't talk too much
+Could this be a strange new love I've got
+Plus she's always got that loud pack
+Inspiration for this soundtrack
+Every time she throws that ass back, all she says is<br>
+<br>
+Take me away
+Take me away
+Take me away
+Take me away<br>
+<br>
+Every time I go inside of your protected
+Place with reverence
+I'm reminded of a time I was neglected
+It seems you're heaven sent
+She loves to top me off
+She's cut from the finest cloth, my love
+Plus, we like to take it easy
+All she wants to do is please me
+Every time I'm on that TV, calls me up, says<br>
+<br>
+Take me away (Won't you please take me away baby, 'way baby)
+(Won't you please take me away)
+Take me away (I like the way you say my name baby, name baby)
+(Won't you please take me away)
+Take me away
+Take me away<br>
+<br>
+Wherever you go, just take me, take me, take me
+Would you take me, baby
+Take (Take me away)
+Want you take me away, take me away (Take me)
+Take me away, take me away
+If it's the last thing
+Want you to take me away, take me away (Take me)
+Take me away, take me away
+Take me<br>
+</p>
+            </div>
+        </td>
+    </tr>
 
-            <tr>
-                <td>6</td>
-                <td>We Find Love</td>
-                <td>Daniel Caesar</td>
-                <td>
-                    <audio controls>
-                        <source src="audios/We Find Love.mp3" type="audio/mpeg">
-                    </audio>
-                </td>
-            </tr>
-
-            <tr>
-                <td>7</td>
-                <td>Blessed</td>
-                <td>Daniel Caesar</td>
-                <td>
-                    <audio controls>
-                        <source src="audios/Blessed.mp3" type="audio/mpeg">
-                    </audio>
-                </td>
-            </tr>
-
-            <tr>
-                <td>8</td>
-                <td>Take Me Away (feat. Syd)</td>
-                <td>Daniel Caesar, Syd</td>
-                <td>
-                    <audio controls>
-                        <source src="audios/Take Me Away.mp3" type="audio/mpeg">
-                    </audio>
-                </td>
-            </tr>
-
-            <tr>
-                <td>9</td>
-                <td>Transform (feat. Charlotte Day Wilson)</td>
-                <td>Daniel Caesar, Charlotte Day Wilson</td>
-                <td>
-                    <audio controls>
-                        <source src="audios/Transform.mp3" type="audio/mpeg">
-                    </audio>
-                </td>
-            </tr>
-
-        </table>
-
-    </div>
-
-</div>
+    <tr>
+        <td>9</td>
+        <td>Transform (feat. Charlotte Day Wilson)</td>
+        <td>Daniel Caesar, Charlotte Day Wilson</td>
+        <td>
+            <audio controls>
+                <source src="audios/Transform.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+        <td>
+            <div class="lyrics-scroll">
+                <p class="lyrics">If a leopard never changes its spots
+How can I change what I've got?
+Transform, transform, transform, transform
+We don't punish the tiger for catching its prey
+So how am I the one to blame?
+If it's in my nature
+Transform, transform, transform, transform<br>
+<br>
+And I don't know why I fight it
+The least I could do is try
+But ego's in the way
+I know that you feel mad today
+But that anger will fade away
+And you'll wish she was here<br>
+<br>
+It's never over until life ends
+Lay down beside me, do it again
+It's never over until life ends, yeah
+Lay down beside<br>
+<br>
+And don't be a fool, baby I know you've changed
+It's in my nature and it's okay (It's okay)
+And I'll be your goddess and you a part of me
+Lay down your pride, lay down with me<br>
+<br>
+So ugly but you love me
+Keep nobody else above me
+And that's why I keep you around
+Ain't it funny, now you're money
+Act like you don't know nobody
+What goes round gon' come back around<br>
+<br>
+It's never over until life ends
+Lay down beside me, do it again
+It's never over until life ends, yeah
+Lay down beside me<br>
+<br>
+You're my violet in the sun
+You're the chosen one
+You're my violet in the sun
+You're the chosen one
+You're my violet in the sun
+You're the chosen one<br>
+<br>
+Can't quit you, you're like drugs
+Swear I tried to clean up
+Too much shared between us
+Saved my soul like Jesus
+Can't quit you, you're like drugs
+Swear I tried to clean up
+Too much shared between us
+Saved my soul like Jesus<br>
+</p>
+            </div>
+        </td>
+    </tr>
+</table>
