@@ -1,1 +1,186 @@
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13188.017746690057!2d122.96177220192074!3d10.670987702588913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aed10b2f7ade09%3A0x73c444aeb939e122!2sUniversity%20of%20St.%20La%20Salle!5e0!3m2!1sen!2sph!4v1782267229811!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Daniel Caesar</title>
+
+ <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url("images/background.jpg.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+
+        header{
+            width: 100%;
+            height: 42px;
+            background: #f3f3f3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .header-color{
+            font-family: Georgia, serif;
+            font-size: 18px;
+            font-weight: normal;
+            color: #222;
+        }
+
+        .header-backbutton-image{
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 999;
+        }
+
+        .header-backbutton-image img{
+            width: 42px;
+            cursor: pointer;
+        }
+
+        .header-backbutton-image img:hover{
+            opacity: 0.5;
+        }
+
+.Tour{
+    text-align:center;
+    padding: 30px 20px;
+    background:navy;
+}
+
+.Tour h1{
+    color:white;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.Tour p{
+    color:white;
+    font-size:18px;
+}
+
+
+.container{
+    width:100%;
+    margin:40px auto;
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.history-images{
+    width:300px;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.history-images:hover{
+    transform:translateY(-5px);
+}
+
+.history-images img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.history-images h3{
+    padding:12px 15px 5px;
+    color:#003366;
+}
+
+.history-images p{
+    padding:0 15px 15px;
+    color:black;
+}
+
+footer{
+    background:#003366;
+    color:white;
+    text-align:center;
+    padding: 15px;
+    margin-top: 166.5px;
+}
+
+
+@media(max-width: 1000px){
+
+    header{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    nav a{
+        margin:0 8px;
+    }
+
+    .Tour h1{
+        font-size:30px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<header>
+        <div class="header-color">Daniel Caesar</div>
+        <div class="header-backbutton-image">
+            <a href="album.html">
+                <img src="images/backbutton.webp" alt="Back Button">
+            </a>
+        </div>
+
+        </header>
+
+<section class="Tour">
+    <h1>Tour</h1>
+    <p>Daniel Caesar's</p>
+</section>
+
+<section class="container">
+
+    <div class="history-images">
+        <img src="images/danielconcert2025.png" alt="Stage">
+        <h3>2025</h3>
+        <p>Toronto 2014 Tour</p>
+    </div>
+
+    <div class="history-images">
+        <img src="images/danielconcert2023.png" alt="Manila">
+        <h3>2023</h3>
+        <p>Superpowers Tour/p>
+    </div>
+
+    <div class="history-images">
+        <img src="images/danielconcert2026.png" alt="MOA">
+        <h3>2026</h3>
+        <p>Son of Spergy Tour</p>
+    </div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.720914603723!2d122.95998157480355!3d10.678757289464146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aed10b2f7ade09%3A0x73c444aeb939e122!2sUniversity%20of%20St.%20La%20Salle!5e0!3m2!1sen!2sph!4v1782302513913!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+    </section>
+
+<footer>
+    <p>All rights reserved.</p>
+</footer>
+
+</body>
+</html>
