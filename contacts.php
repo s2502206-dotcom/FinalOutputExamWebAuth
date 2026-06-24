@@ -1,11 +1,3 @@
-<?php
-
-if(isset($_POST['submit'])){
-    echo "Thank you, " . htmlspecialchars($_POST['name']) . "! Your message has been received.";
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,14 +155,7 @@ if(isset($_POST['submit'])){
 
         <div class="success">
     <div class="success">
-<?php
-if(isset($_POST['submit'])){
-    echo "Name: " . htmlspecialchars($_POST['name']) . "<br>";
-    echo "Email: " . htmlspecialchars($_POST['email']) . "<br>";
-    echo "Phone: " . htmlspecialchars($_POST['phone']) . "<br>";
-    echo "Message: " . htmlspecialchars($_POST['message']) . "<br>";
-}
-?>
+
 </div>
 
         <form method="POST">
@@ -190,6 +175,17 @@ if(isset($_POST['submit'])){
     </div>
 
 </div>
+   
+      <?php
+if(isset($_POST['submit'])){
+    echo "Name: " . htmlspecialchars($_POST['name']) . "<br>";
+    echo "Email: " . htmlspecialchars($_POST['email']) . "<br>";
+    echo "Phone: " . htmlspecialchars($_POST['phone']) . "<br>";
+    echo "Message: " . htmlspecialchars($_POST['message']) . "<br>";
+}
+?>
+    
+   
 
 </body>
 </html>
