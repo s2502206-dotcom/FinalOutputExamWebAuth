@@ -158,33 +158,35 @@
 
 </div>
 
-        <form method="POST">
-
+        <form method="POST" action="">
             <input type="text" name="name" placeholder="Your Name" required>
-
             <input type="email" name="email" placeholder="Your Email" required>
-
             <input type="text" name="phone" placeholder="Phone" required>
-
             <textarea name="message" placeholder="Your Message" required></textarea>
-
-            <button type="submit" name="submit">Send Message</button>
-
+            <button type="submit">Send Message</button>
         </form>
 
     </div>
 
 </div>
    
-      <?php
-if(isset($_POST['submit'])){
-    echo "Name: " . htmlspecialchars($_POST['name']) . "<br>";
-    echo "Email: " . htmlspecialchars($_POST['email']) . "<br>";
-    echo "Phone: " . htmlspecialchars($_POST['phone']) . "<br>";
-    echo "Message: " . htmlspecialchars($_POST['message']) . "<br>";
-}
-?>
-    
+     <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name    = htmlspecialchars($_POST['name']);
+        $email   = htmlspecialchars($_POST['email']);
+        $phone   = htmlspecialchars($_POST['phone']);
+        $message = htmlspecialchars($_POST['message']);
+
+     echo '<div class="success">';
+        echo '<h3>Message Received!</h3>';
+        echo '<p>Name:</p> ' . $name . '<br>';
+        echo '<p>Email:</p> ' . $email . '<br>';
+        echo '<p>Phone:</p> ' . $phone . '<br>';
+        echo '<p>Message:</p><br>' . nl2br($message);
+        echo '</div>';
+
+    }
+    ?>
    
 
 </body>
