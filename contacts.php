@@ -21,10 +21,6 @@
         background-attachment: fixed;
     }
 
-    /* ======================
-       NAVIGATION BAR
-    ====================== */
-
     header{
         width: 100%;
         height: 42px;
@@ -65,98 +61,97 @@
         text-decoration-color: navy;
     }
 
-/* CONTACT SECTION */
-.contact-container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:80vh;
-    padding:40px;
-}
+    .contact-container{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:80vh;
+        padding:40px;
+    }
 
-.contact-box{
-    width:500px;
-    background:navy;
-    padding:40px;
-    border-radius:15px;
-    box-shadow: blue;
-    animation:fadeIn .8s ease;
-}
+    .contact-box{
+        width:500px;
+        background:navy;
+        padding:40px;
+        border-radius:15px;
+        box-shadow: 0 4px 15px rgba(0,0,255,0.3);
+        animation:fadeIn .8s ease;
+    }
 
-.contact-box h1{
-    text-align:center;
-    margin-bottom:25px;
-    letter-spacing:2px;
-    color: white;
-}
+    .contact-box h1{
+        text-align:center;
+        margin-bottom:25px;
+        letter-spacing:2px;
+        color: white;
+    }
 
-.contact-box input,
-.contact-box textarea{
-    width:100%;
-    padding:12px;
-    margin-bottom:15px;
-    border:none;
-    border-radius:8px;
-    background:white;
-    color:black;
-}
+    .contact-box input,
+    .contact-box textarea{
+        width:100%;
+        padding:12px;
+        margin-bottom:15px;
+        border:none;
+        border-radius:8px;
+        background:white;
+        color:black;
+    }
 
-.contact-box textarea{
-    height:200px;
-    resize:none;
-}
+    .contact-box textarea{
+        height:200px;
+        resize:none;
+    }
 
-.contact-box button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background: blue;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
-}
+    .contact-box button{
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:8px;
+        background: blue;
+        color:white;
+        font-weight:bold;
+        cursor:pointer;
+        transition:.3s;
+    }
 
-.contact-box button:hover{
-    transform:scale(1.03);
-}
+    .contact-box button:hover{
+        transform:scale(1.03);
+    }
 
-.success{
-    text-align:center;
-    color: navy;
-    margin-bottom:15px;
-}
-
+    .success-msg {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+    }
 </style>
 </head>
 
 <body>
 
 <header>
-
-<div class="header-color">Daniel Caesar</div>
-
-<nav>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="album.html">Album</a></li>
-        <li><a href="contacts.html">Contacts</a></li>
-    </ul>
-</nav>
-
+    <div class="header-color">Daniel Caesar</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="album.html">Album</a></li>
+            <li><a href="contacts.html">Contacts</a></li>
+        </ul>
+    </nav>
 </header>
 
 <div class="contact-container">
-
     <div class="contact-box">
-
         <h1>CONTACT</h1>
 
-        <div class="success">
-    <div class="success">
-
-</div>
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = htmlspecialchars($_POST['name']);
+            echo "<div class='success-msg'>Thank you, " . $name . "! Your message has been sent.</div>";
+        }
+        ?>
 
         <form method="POST" action="">
             <input type="text" name="name" placeholder="Your Name" required>
@@ -165,29 +160,8 @@
             <textarea name="message" placeholder="Your Message" required></textarea>
             <button type="submit">Send Message</button>
         </form>
-
     </div>
-
 </div>
-   
-     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name    = htmlspecialchars($_POST['name']);
-        $email   = htmlspecialchars($_POST['email']);
-        $phone   = htmlspecialchars($_POST['phone']);
-        $message = htmlspecialchars($_POST['message']);
-
-     echo '<div class="success">';
-        echo '<h3>Message Received!</h3>';
-        echo '<p>Name:</p> ' . $name . '<br>';
-        echo '<p>Email:</p> ' . $email . '<br>';
-        echo '<p>Phone:</p> ' . $phone . '<br>';
-        echo '<p>Message:</p><br>' . nl2br($message);
-        echo '</div>';
-
-    }
-    ?>
-   
 
 </body>
 </html>
